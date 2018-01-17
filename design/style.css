@@ -18,7 +18,7 @@ p {
 	box-sizing: border-box;
 	padding: 10px;
 	border: none;
-	font: normal 48px/normal "Warnes", Helvetica, sans-serif;
+	font: normal 35px/normal "Warnes", Helvetica, sans-serif;
 	color: rgba(255,255,255,1);
 	text-decoration: normal;
 	text-align: center;
@@ -33,10 +33,9 @@ p {
 }
 
 #board-container {
-	background-image: url(board-background.png);
-	background-repeat: no-repeat;
-	background-position: center;
+	background: url(board-background.png) no-repeat center;
 	background-size: contain;
+	position: relative;
 	text-align: center;
 	width: 50%;
 	min-height: 344px;
@@ -45,7 +44,7 @@ p {
 }
 
 .blue-low-light {
-	font: normal 25px/normal "Warnes", Helvetica, sans-serif;
+	font: normal 20px/normal "Warnes", Helvetica, sans-serif;
 	color: #20CDCE;
 	text-decoration: normal;
 	text-shadow: 0 0 30px #20CDCE, 0 0 0px #20CDCE, 0 0 0px #20CDCE, 0 0 0px #20CDCE, 0 0 0px #20CDCE, 0 0 0px #20CDCE, 0 0 0px #20CDCE;
@@ -102,6 +101,7 @@ nav ul li::before {
 }
 
 #chance-container {
+	width: 37%;
 }
 
 #chat-left-bound {
@@ -204,7 +204,18 @@ footer {
 	height: 355px;
 	position: absolute;
 	left: 50%;
-	background-color: #1992AD;
+	background-color: #1787A0;
+	top: -8px;
+}
+
+.vertical-hr-dashed {
+	width: 2px;
+	height: 355px;
+	position: absolute;
+	background: repeating-linear-gradient(0deg,
+		#0E5362, #0E5362 5px, transparent 5px,
+		transparent 10px );
+	top: -8px;)
 }
 
 #outcome-container, #bet-amount-container {
@@ -224,4 +235,68 @@ footer {
 
 #tails-button {
 	float: right;
+}
+
+#low-grav {
+	background: url("board-smaller-button.png") no-repeat center;
+	float: left;
+	width: 35px;
+	height: 35px;
+	line-height: 35px;
+	font-size: 13px;
+}
+
+#medium-grav {
+	background: url("board-medium-button.png") no-repeat center;
+	width: 43px;
+	height: 43px;
+	display: inline-block;
+	margin-top: 12px;
+	line-height: 43px;
+}
+
+#high-grav {
+	background: url("board-smaller-button.png") no-repeat center;
+	float: right;
+	width: 35px;
+	text-align: center;
+	vertical-align: middle;
+	height: 35px;
+	line-height: 35px;
+	font-size: 13px;
+}
+
+#gravity-container {
+	width: 45%;
+	margin: -5px auto 0 auto;
+	padding-right: 5px;
+}
+
+#coin-type-container {
+	position: absolute;
+	display: grid;
+	grid-row-gap: 9px;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 40px;
+}
+
+#coin-1, #coin-3 {
+	background: url("board-small-button.png");
+	height: 40px;
+	line-height: 40px;
+	width: 40px;
+}
+
+#coin-1 {
+}
+
+#coin-3 {
+}
+
+#coin-2 {
+	background: url("board-big-button.png");
+	height: 61px;
+	line-height: 61px;
+	width: 60px;
 }
