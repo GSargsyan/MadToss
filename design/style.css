@@ -160,6 +160,8 @@ nav ul li::before {
 #clock-minute-hand {
 	right: 76px;
 	top: 82px;
+	transform: rotate( -419deg );
+    transform-origin: 79% 71%;
 }
 
 #clock-hour-hand {
@@ -268,7 +270,7 @@ footer {
 
 #gravity-container {
 	width: 45%;
-	margin: -5px auto 0 auto;
+	margin: 6px auto 0 auto;
 	padding-right: 5px;
 }
 
@@ -299,4 +301,10 @@ footer {
 	height: 61px;
 	line-height: 61px;
 	width: 60px;
+}
+
+.blue-hr {
+	background-color: #14768C;
+    height: 1px;
+    border: 0;
 }
