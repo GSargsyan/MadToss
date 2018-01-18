@@ -1,16 +1,21 @@
-var deg = 0;
+var now = new Date();
+var currentMinute = now.getMinutes();
+var currentSecond = now.getSeconds();
+var currentHour = now.getHours();
+
+var minuteDegrees = 0.1 * now.getSeconds() + 6 * now.getMinutes();
+var hourDegrees = now.getHours() * 360 / 24;
 
 function init_clock() {
-	setInterval("tickMinute()", 100);
-	var now = new Date();
+	setInterval("tickMinutes()", 100);
 }
 
 document.body.onload = init_clock();
 
-function tickMinute() {
+function tickMinutes() {
 	var minuteHand = byId("clock-minute-hand");
-	minuteHand.style.transform = "rotate(" + deg + "deg)";
-	deg += 0.01;
+	minuteHand.style.transform = "rotate(" + minuteDegrees + "deg)";
+	minuteDegrees += 0.01;
 }
 
 function byId(id) {
