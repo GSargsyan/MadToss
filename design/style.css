@@ -1,5 +1,5 @@
 body {
-	background-image: url("background.png");
+	background-image: url("images/background.png");
 	background-color: #000;
 	background-repeat: no-repeat no-repeat;
 	background-size: 100vw 100vh;
@@ -33,7 +33,7 @@ p {
 }
 
 #board-container {
-	background: url(board-background.png) no-repeat center;
+	background: url("images/board-background.png") no-repeat center;
 	background-size: contain;
 	position: relative;
 	text-align: center;
@@ -82,11 +82,11 @@ nav ul {
 
 nav ul li {
 	display: inline;
-	background-image: url("account-button-background.png");
+	background-image: url("images/account-button-background.png");
 }
 
 nav ul li::before {
-	/*content: url("nav-side-column.png");*/
+	/*content: url("images/nav-side-column.png");*/
 }
 
 #balance {
@@ -144,7 +144,7 @@ nav ul li::before {
 
 #clock-container {
 	position: absolute;
-	background-image: url("clock-frame.png");
+	background-image: url("images/clock-frame.png");
 	background-position: center;
 	height: 196px;
 	right: 60px;
@@ -159,9 +159,8 @@ nav ul li::before {
 
 #clock-minute-hand {
 	right: 76px;
-	top: 82px;
-	transform: rotate( -419deg );
-    transform-origin: 79% 71%;
+	top: 42px;
+	transform-origin: 29% 79%;
 }
 
 #clock-hour-hand {
@@ -240,7 +239,7 @@ footer {
 }
 
 #low-grav {
-	background: url("board-smaller-button.png") no-repeat center;
+	background: url("images/board-smaller-button.png") no-repeat center;
 	float: left;
 	width: 35px;
 	height: 35px;
@@ -249,7 +248,7 @@ footer {
 }
 
 #medium-grav {
-	background: url("board-medium-button.png") no-repeat center;
+	background: url("images/board-medium-button.png") no-repeat center;
 	width: 43px;
 	height: 43px;
 	display: inline-block;
@@ -258,7 +257,7 @@ footer {
 }
 
 #high-grav {
-	background: url("board-smaller-button.png") no-repeat center;
+	background: url("images/board-smaller-button.png") no-repeat center;
 	float: right;
 	width: 35px;
 	text-align: center;
@@ -284,7 +283,7 @@ footer {
 }
 
 #coin-1, #coin-3 {
-	background: url("board-small-button.png");
+	background: url("images/board-small-button.png");
 	height: 40px;
 	line-height: 40px;
 	width: 40px;
@@ -297,7 +296,7 @@ footer {
 }
 
 #coin-2 {
-	background: url("board-big-button.png");
+	background: url("images/board-big-button.png");
 	height: 61px;
 	line-height: 61px;
 	width: 60px;
