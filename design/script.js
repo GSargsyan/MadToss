@@ -16,14 +16,13 @@ document.body.onload = init_clock();
 
 function tickClock() {
 	var minuteHand = byId("clock-minute-hand");
+	hourDegrees = 30 * (new Date()).getHours() + (new Date()).getMinutes() * 0.5;
 	var hourHand = byId("clock-hour-hand");
 
 	minuteHand.style.transform = "rotate(" + minuteDegrees + "deg)";
 	hourHand.style.transform = "rotate(" + hourDegrees + "deg)";
 
-	minuteDegrees += 0.01;
-	// TODO: bad solution, rething this part
-	hourDegrees += 0.0083333334;
+	minuteDegrees += 0.0001 * tickInterval;
 }
 
 function byId(id) {

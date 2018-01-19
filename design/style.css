@@ -164,8 +164,9 @@ nav ul li::before {
 }
 
 #clock-hour-hand {
-	right: 85px;
+	right: 86px;
 	top: 61px;
+	transform-origin: 62% 68%;
 }
 
 #chat-title {
@@ -198,6 +199,7 @@ footer {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
+	position: sticky;
 }
 
 #footer-mid-content {
