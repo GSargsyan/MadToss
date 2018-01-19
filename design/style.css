@@ -7,6 +7,11 @@ body {
 	margin: 0;
 }
 
+@font-face {
+	font-family: FaxineSky;
+	src: url(faxine_sky.ttf);
+}
+
 p {
 	margin: 0;
 }
