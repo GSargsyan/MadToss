@@ -164,8 +164,8 @@ nav ul li::before {
 }
 
 #clock-hour-hand {
-	right: 86px;
-	top: 61px;
+	right: 84px;
+	top: 60.5px;
 	transform-origin: 62% 68%;
 }
 
