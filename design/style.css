@@ -117,7 +117,7 @@ nav ul li::before {
 	position: relative;
 	height: 358px;
 	width: 290px;
-	left: 70px;
+	left: 9%;
 	float: left;
 }
 
@@ -152,7 +152,7 @@ nav ul li::before {
 	background-image: url("images/clock-frame.png");
 	background-position: center;
 	height: 196px;
-	right: 60px;
+	right: 6%;
 	top: 0;
 	width: 181px;
 	display: inline;
@@ -169,8 +169,9 @@ nav ul li::before {
 }
 
 #clock-hour-hand {
-	right: 85px;
-	top: 61px;
+	right: 84px;
+	top: 60.5px;
+	transform-origin: 62% 68%;
 }
 
 #chat-title {
@@ -199,6 +200,11 @@ nav ul li::before {
 }
 
 footer {
+	min-height: 32%;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	position: sticky;
 }
 
 #footer-mid-content {
@@ -221,7 +227,7 @@ footer {
 	background: repeating-linear-gradient(0deg,
 		#0E5362, #0E5362 5px, transparent 5px,
 		transparent 10px );
-	top: -8px;)
+	top: -8px;
 }
 
 #outcome-container, #bet-amount-container {
