@@ -9,7 +9,12 @@ body {
 
 @font-face {
 	font-family: FaxineSky;
-	src: url(faxine_sky.ttf);
+	src: url(faxine_sky-bold.ttf);
+}
+
+* {
+	/* TODO: footer should be absolute but not be zoomed in
+	font-family: FaxineSky !important;
 }
 
 p {
