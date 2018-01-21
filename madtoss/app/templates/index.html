@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+	<nav>
+		<ul class="nav-text">
+			<li class="bar"></li>
+			<li>Home</li>
+			<li>About</li>
+			<li>Account</li>
+			<li>More</li>
+		</ul>
+		
+	</nav>
+	<div id="balance-container">
+			<p id="balance" class="blue-low-light">D 3.88579000 W</p>
+			<img src="images/balance-underline.png">
+	</div>
+	<div id="mid-content">
+		<div id="chat-container">
+			<img class="chat-horizontal-bound" id="chat-outer-upper-bound" src="images/chat-outer-upper-bound.png">
+			<p id="chat-title" class="blue-low-light">CHAT</p>
+			<img class="chat-horizontal-bound" id="chat-inner-upper-bound" src="images/chat-inner-upper-bound.png">
+			<img id="chat-left-bound" src="images/chat-left-bound.png">
+			<img id="chat-right-bound" src="images/chat-right-bound.png">
+			<img class="chat-horizontal-bound" id="chat-inner-lower-bound" src="images/chat-inner-lower-bound.png">
+			<img class="chat-horizontal-bound" id="chat-outer-lower-bound" src="images/chat-outer-lower-bound.png">
+		</div>
+		<div id="board-container">
+			<div id="bet-amount-container">
+				<p class="blue-low-light" style="font-size: 14px;">Bet Amount</p>
+				<p class="blue-low-light" style="font-size: 14px;">0.00080000</p>
+			</div>
+			<div id="outcome-container">
+				<p class="blue-low-light" style="font-size: 14px;">Outcome</p>
+				<p class="blue-low-light" style="font-size: 14px;">0.00080000</p>
+			</div>
+			<div id="chance-container">
+				<input type="image" src="images/higher-button.png">
+				<p class="blue-low-light">50</p>
+				<input type="image" src="images/lower-button.png">
+			</div>
+			<div id="coin-type-container">
+				<span class="blue-low-light" id="coin-1">1</span>
+				<span class="blue-low-light" id="coin-2">2</span>
+				<span class="blue-low-light" id="coin-3">3</span>
+			</div>
+			<div id="gravity-container">
+				<span class="blue-low-light" id="low-grav">0.1</span>
+				<span class="blue-low-light" id="medium-grav">2</span>
+				<span class="blue-low-light" id="high-grav">40</span>
+			</div>
+			<div id="coin-sides">
+				<img id="heads-button" src="images/board-H-button.png"/>
+				<img id="tails-button" src="images/board-T-button.png"/>
+			</div>
+		</div>
+		<div id="clock-container">
+			<img id="clock-minute-hand" class="clock-hand" src="images/clock-minute-hand.png">
+			<img id="clock-hour-hand" class="clock-hand" src="images/clock-hour-hand.png">
+		</div>
+	</div>
+	<footer>
+		<hr class="blue-hr">	
+		<div id="bet-section" class="footer-section">
+			<img class="footer-outer-upper-bound.png" src="images/footer-outer-upper-bound.png">
+			<p class="blue-low-light">My Bets</p>
+			<img class="footer-inner-upper-bound.png" src="images/footer-inner-upper-bound.png">
+		</div>
+		<div id="footer-mid-content">
+			<span class="vertical-hr"></span>
+			<span class="vertical-hr-dashed" style="left: 49%;"></span>
+			<span class="vertical-hr-dashed" style="left: 51%;"></span>
+		</div>
+		<div id="comp-section" class="footer-section">
+			<img class="footer-outer-upper-bound.png" src="images/footer-outer-upper-bound.png">
+			<p class="blue-low-light">Competition</p>
+			<img class="footer-inner-upper-bound.png" src="images/footer-inner-upper-bound.png">
+		</div>
+	</footer>
+
+	<script type="text/javascript" src="script.js"></script> 
+</body>
+</html>
+
