@@ -2,3 +2,5 @@
 *.swo
 *.log
 *.tmp
+*.sock
+__pycache__
