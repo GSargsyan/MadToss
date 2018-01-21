@@ -9,7 +9,12 @@ body {
 
 @font-face {
 	font-family: FaxineSky;
-	src: url(faxine_sky.ttf);
+	src: url(faxine_sky-bold.ttf);
+}
+
+* {
+	/* TODO: footer should be absolute but not be zoomed in */
+	font-family: FaxineSky !important;
 }
 
 p {
@@ -194,12 +199,12 @@ nav ul li::before {
 	float: right;
 }
 
-.footer-section {
+.bet-comp-section {
 	display: inline-block;
 	text-align: center;
 }
 
-footer {
+#bet-comp {
 	min-height: 32%;
 	position: absolute;
 	bottom: 0;
@@ -207,7 +212,7 @@ footer {
 	position: sticky;
 }
 
-#footer-mid-content {
+#bet-comp-mid-content {
 	position: relative;
 }
 
@@ -311,6 +316,7 @@ footer {
 	height: 61px;
 	line-height: 61px;
 	width: 60px;
+	font-size: 25px;
 }
 
 .blue-hr {
