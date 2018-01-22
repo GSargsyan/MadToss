@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+	<link rel=stylesheet type=text/css href="style.css ">
 </head>
 <body>
 	<nav>
@@ -63,24 +63,27 @@
 			<img id="clock-hour-hand" class="clock-hand" src="images/clock-hour-hand.png">
 		</div>
 	</div>
-	<footer>
-		<hr class="blue-hr">	
-		<div id="bet-section" class="footer-section">
-			<img class="footer-outer-upper-bound.png" src="images/footer-outer-upper-bound.png">
+	<div id="outcome-display">
+		<img id="outcome-coin" src="images/btc-coin.png"/>
+		<img id="outcome-coin-backface"  src="images/btc-coin-backface.png">
+	</div>
+	<div id="stats">
+		<hr class="blue-hr">
+		<div id="bet-section" class="stats-section">
+			<img class="stats-outer-upper-bound.png" src="images/stats-outer-upper-bound.png">
 			<p class="blue-low-light">My Bets</p>
-			<img class="footer-inner-upper-bound.png" src="images/footer-inner-upper-bound.png">
+			<img class="stats-inner-upper-bound.png" src="images/stats-inner-upper-bound.png">
 		</div>
-		<div id="footer-mid-content">
-			<span class="vertical-hr"></span>
-			<span class="vertical-hr-dashed" style="left: 49%;"></span>
-			<span class="vertical-hr-dashed" style="left: 51%;"></span>
+		<div id="stats-mid-content">
+			<span class="vertical-hr-dashed" style="left: 49.6%;"></span>
+			<span class="vertical-hr-dashed" style="left: 50.4%;"></span>
 		</div>
-		<div id="comp-section" class="footer-section">
-			<img class="footer-outer-upper-bound.png" src="images/footer-outer-upper-bound.png">
+		<div id="comp-section" class="stats-section">
+			<img class="stats-outer-upper-bound.png" src="images/stats-outer-upper-bound.png">
 			<p class="blue-low-light">Competition</p>
-			<img class="footer-inner-upper-bound.png" src="images/footer-inner-upper-bound.png">
+			<img class="stats-inner-upper-bound.png" src="images/stats-inner-upper-bound.png">
 		</div>
-	</footer>
+	</div>
 
 	<script type="text/javascript" src="script.js"></script> 
 </body>
