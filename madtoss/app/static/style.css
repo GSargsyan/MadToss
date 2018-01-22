@@ -10,7 +10,11 @@ body {
 
 @font-face {
 	font-family: FaxineSky;
-	src: url(faxine_sky.ttf);
+	src: url("faxine_sky.ttf");
+}
+
+* {
+	font-family: FaxineSky !important;
 }
 
 p {
@@ -46,7 +50,7 @@ p {
 	width: 50%;
 	min-height: 344px;
 	max-width: 484px;
-	margin: 0 auto;
+	margin: 40px auto 0 auto;
 }
 
 .blue-low-light {
@@ -88,7 +92,7 @@ nav ul {
 
 nav ul li {
 	display: inline;
-	background-image: url("images/account-button-background.png");
+	margin: 0 20px;
 }
 
 nav ul li::before {
@@ -103,7 +107,7 @@ nav ul li::before {
 	width: 30%;
 	margin: 0 auto;
 	text-align: center;
-	padding-top: 55px;
+	padding-top: 18px;
 }
 
 #chance-container {
@@ -195,20 +199,17 @@ nav ul li::before {
 	float: right;
 }
 
-.footer-section {
+.stats-section {
 	display: inline-block;
 	text-align: center;
 }
 
-footer {
+#stats {
 	min-height: 32%;
-	position: absolute;
-	bottom: 0;
 	width: 100%;
-	position: sticky;
 }
 
-#footer-mid-content {
+#stats-mid-content {
 	position: relative;
 }
 
@@ -314,8 +315,21 @@ footer {
 	width: 60px;
 }
 
+#outcome-coin {
+    width: 200px;
+}
+
+#outcome-coin-backface {
+    width: 200px;
+}
+
+#outcome-display {
+	text-align: center;
+}
+
 .blue-hr {
 	background-color: #14768C;
-    height: 1px;
-    border: 0;
+	height: 1px;
+    	border: 0;
 }
+
