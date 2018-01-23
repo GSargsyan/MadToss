@@ -10,7 +10,7 @@ body {
 
 @font-face {
 	font-family: FaxineSky;
-	src: url("faxine_sky.ttf");
+	src: url("fonts/faxine_sky.ttf");
 }
 
 * {
@@ -320,9 +320,11 @@ nav ul li::before {
     backface-visibility: hidden;
     position: absolute;
     top: 0;
-    left: 0;
-    transform: rotateY(0deg);
-	z-index: 2;
+    left: 50%;
+    transform: rotateX(0deg);
+    z-index: 2;
+    transition: 0.6s;
+    transform-style: preserve-3d;
 }
 
 #outcome-coin-backface {
@@ -330,20 +332,29 @@ nav ul li::before {
     backface-visibility: hidden;
     position: absolute;
     top: 0;
-    transform: rotateY(180deg);
-    left: 0;
+    transform: rotateX(180deg);
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    left: 50%;
 }
 
 #outcome-display {
-    text-align: center;
     transition: 0.6s;
     transform-style: preserve-3d;
     position: relative;
+    height: 200px;
 }
 
 #outcome-display:hover #outcome-coin {
 	/* reference: https://davidwalsh.name/css-flip */
-	transform: rotateY(180deg);
+	transform: rotateX(180deg);
+}
+
+#outcome-display:hover #outcome-coin-backface {
+	transform: rotateX(0deg);
+}
+#outcome-display:hover #outcome-coin {
+	transform: rotateX(180deg);
 }
 
 .blue-hr {
