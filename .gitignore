@@ -4,3 +4,4 @@
 *.tmp
 *.sock
 __pycache__
+*.pyc
