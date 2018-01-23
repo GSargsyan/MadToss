@@ -1,2 +1,3 @@
 uwsgi
 flask
+psycopg2
