@@ -10,6 +10,8 @@ dnf install postgresql-server
 dnf install postgresql-contrib
 dnf install pgadmin3
 
+python -m pip install passlib
+
 setenforce Enforcing
 semanage permissive -a httpd_t
 

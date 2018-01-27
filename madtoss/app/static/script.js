@@ -28,3 +28,12 @@ function tickClock() {
 function byId(id) {
 	return document.getElementById(id);
 }
+
+function changeChance(newValue) {
+	byId('chance').innerHTML = newValue;
+}
+
+function addToChance(value) {
+	chance_elem = byId('chance');
+	chance_elem.innerHTML = parseInt(chance_elem.innerHTML) + value;
+}

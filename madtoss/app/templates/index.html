@@ -17,17 +17,17 @@
 	</nav>
 	<div id="balance-container">
 			<p id="balance" class="blue-low-light">D 3.88579000 W</p>
-			<img src="images/balance-underline.png">
+			<img src="{{ url_for('static', filename='images/balance-underline.png') }}">
 	</div>
 	<div id="mid-content">
 		<div id="chat-container">
-			<img class="chat-horizontal-bound" id="chat-outer-upper-bound" src="images/chat-outer-upper-bound.png">
+			<img class="chat-horizontal-bound" id="chat-outer-upper-bound" src="{{ url_for('static', filename='images/chat-outer-upper-bound.png') }}">
 			<p id="chat-title" class="blue-low-light">CHAT</p>
-			<img class="chat-horizontal-bound" id="chat-inner-upper-bound" src="images/chat-inner-upper-bound.png">
-			<img id="chat-left-bound" src="images/chat-left-bound.png">
-			<img id="chat-right-bound" src="images/chat-right-bound.png">
-			<img class="chat-horizontal-bound" id="chat-inner-lower-bound" src="images/chat-inner-lower-bound.png">
-			<img class="chat-horizontal-bound" id="chat-outer-lower-bound" src="images/chat-outer-lower-bound.png">
+			<img class="chat-horizontal-bound" id="chat-inner-upper-bound" src="{{ url_for('static', filename='images/chat-inner-upper-bound.png') }}">
+			<img id="chat-left-bound" src="{{ url_for('static', filename='images/chat-left-bound.png') }}">
+			<img id="chat-right-bound" src="{{ url_for('static', filename='images/chat-right-bound.png') }}">
+			<img class="chat-horizontal-bound" id="chat-inner-lower-bound" src="{{ url_for('static', filename='images/chat-inner-lower-bound.png') }}">
+			<img class="chat-horizontal-bound" id="chat-outer-lower-bound" src="{{ url_for('static', filename='images/chat-outer-lower-bound.png') }}">
 		</div>
 		<div id="board-container">
 			<div id="bet-amount-container">
@@ -39,9 +39,9 @@
 				<p class="blue-low-light" style="font-size: 14px;">0.00080000</p>
 			</div>
 			<div id="chance-container">
-				<input type="image" src="images/higher-button.png">
-				<p class="blue-low-light">50</p>
-				<input type="image" src="images/lower-button.png">
+				<input type="image" src="{{ url_for('static', filename='images/higher-button.png') }}" onclick="addToChance(1)">
+				<p id="chance" class="blue-low-light">50</p>
+				<input type="image" src="{{ url_for('static', filename='images/lower-button.png') }}" onclick="addToChance(-1)">
 			</div>
 			<div id="coin-type-container">
 				<span class="blue-low-light" id="coin-1">1</span>
@@ -54,38 +54,38 @@
 				<span class="blue-low-light" id="high-grav">40</span>
 			</div>
 			<div id="coin-sides">
-				<img id="heads-button" src="images/board-H-button.png"/>
-				<img id="tails-button" src="images/board-T-button.png"/>
+				<img id="heads-button" src="{{ url_for('static', filename='images/board-H-button.png') }}"/>
+				<img id="tails-button" src="{{ url_for('static', filename='images/board-T-button.png') }}"/>
 			</div>
 		</div>
 		<div id="clock-container">
-			<img id="clock-minute-hand" class="clock-hand" src="images/clock-minute-hand.png">
-			<img id="clock-hour-hand" class="clock-hand" src="images/clock-hour-hand.png">
+			<img id="clock-minute-hand" class="clock-hand" src="{{ url_for('static', filename='images/clock-minute-hand.png') }}">
+			<img id="clock-hour-hand" class="clock-hand" src="{{ url_for('static', filename='images/clock-hour-hand.png') }}">
 		</div>
 	</div>
 	<div id="outcome-display">
-		<img id="outcome-coin" src="images/btc-coin.png"/>
-		<img id="outcome-coin-backface"  src="images/btc-coin-backface.png">
+		<img id="outcome-coin" src="{{ url_for('static', filename='images/btc-coin.png') }}"/>
+		<img id="outcome-coin-backface"  src="{{ url_for('static', filename='images/btc-coin-backface.png') }}">
 	</div>
 	<div id="stats">
 		<hr class="blue-hr">
 		<div id="bet-section" class="stats-section">
-			<img class="stats-outer-upper-bound.png" src="images/stats-outer-upper-bound.png">
+			<img class="stats-outer-upper-bound.png') }}" src="{{ url_for('static', filename='images/stats-outer-upper-bound.png') }}">
 			<p class="blue-low-light">My Bets</p>
-			<img class="stats-inner-upper-bound.png" src="images/stats-inner-upper-bound.png">
+			<img class="stats-inner-upper-bound.png') }}" src="{{ url_for('static', filename='images/stats-inner-upper-bound.png') }}">
 		</div>
 		<div id="stats-mid-content">
 			<span class="vertical-hr-dashed" style="left: 49.6%;"></span>
 			<span class="vertical-hr-dashed" style="left: 50.4%;"></span>
 		</div>
 		<div id="comp-section" class="stats-section">
-			<img class="stats-outer-upper-bound.png" src="images/stats-outer-upper-bound.png">
+			<img class="stats-outer-upper-bound.png') }}" src="{{ url_for('static', filename='images/stats-outer-upper-bound.png') }}">
 			<p class="blue-low-light">Competition</p>
-			<img class="stats-inner-upper-bound.png" src="images/stats-inner-upper-bound.png">
+			<img class="stats-inner-upper-bound.png') }}" src="{{ url_for('static', filename='images/stats-inner-upper-bound.png') }}">
 		</div>
 	</div>
 
-	<script type="text/javascript" src="script.js"></script> 
+	<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script> 
 </body>
 </html>
 
