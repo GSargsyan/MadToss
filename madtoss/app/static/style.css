@@ -10,7 +10,7 @@ body {
 
 @font-face {
 	font-family: FaxineSky;
-	src: url("fonts/faxine_sky.ttf");
+	src: url("fonts/faxine-sky-bold.ttf");
 }
 
 * {
@@ -80,7 +80,7 @@ nav ul {
 	box-sizing: border-box;
 	padding: 10px;
 	border: none;
-	font: normal 35px/normal "Warnes", Helvetica, sans-serif;
+	font: normal 30px/normal "Warnes", Helvetica, sans-serif;
 	color: #20CDCE;
 	text-decoration: normal;
 	text-shadow: 0 0 30px #20CDCE, 0 0 0px #20CDCE, 0 0 0px #20CDCE, 0 0 0px #20CDCE, 0 0 0px #20CDCE, 0 0 0px #20CDCE, 0 0 0px #20CDCE;
@@ -92,7 +92,7 @@ nav ul {
 
 nav ul li {
 	display: inline;
-	margin: 0 20px;
+	margin: 0 0.2vw;
 }
 
 nav ul li::before {
@@ -122,7 +122,7 @@ nav ul li::before {
 	position: relative;
 	height: 358px;
 	width: 290px;
-	left: 9%;
+	left: 6%;
 	float: left;
 }
 
@@ -157,10 +157,11 @@ nav ul li::before {
 	background-image: url("images/clock-frame.png");
 	background-position: center;
 	height: 196px;
-	right: 6%;
+	right: 3%;
 	top: 0;
 	width: 181px;
 	display: inline;
+	transform: translateY(50%);
 }
 
 .clock-hand {

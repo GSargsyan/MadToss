@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script> 
+	<form action="{{ url_for('login_page.register') }}" id="login-form" method="POST">
+		<input name="login">
+		<input type="password" name="password">
+		<input type="submit" value="Register">
+	</form>
+
+	<form action="{{ url_for('login_page.login') }}" id="regist-form" method="POST">
+		<input name="login">
+		<input type="password" name="password">
+		<input type="submit"  value="Login">
+	</form>
+</body>
+</html>
+

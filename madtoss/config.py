@@ -4,3 +4,4 @@ DB_USER = 'madtoss'
 DB_PASS = 'madpass'
 
 PASS_ROUNDS = 20000
+SESSION_KEY = 'madsession'
