@@ -25,17 +25,22 @@ class DBTable:
         query = "SELECT {} FROM {} {} WHERE {} {}"\
                 .format(",".join(fields), self.table, " ".join(joins),
                         where, tail)
+
+        result = db.execute(query).fetchall()
+        if result is None:
+            return None
         if limit == 1:
-            return list(db.execute(query))[0]
-        return db.execute(query)
+            if len(result) > 0:
+                return result[0]
+        return result
 
 
     def insert(self, fields: List, values: Tuple):
         # TODO: the code below doesn't work
-        query = "INSERT INTO {} ({}) VALUES (%s)".format(
-                self.table, ", ".join(fields))
-        print(query)
-        return db.execute(query, values)
+
+        query = "INSERT INTO {} ({}) VALUES %s".format(
+                self.table, ", ".join(str(f) for f in fields))
+        return db.execute(query, (values,))
 
     def update(self, changes, where=[]):
         pass

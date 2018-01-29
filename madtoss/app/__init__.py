@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, Blueprint
+from flask import Flask, render_template,\
+        request, Blueprint, session, redirect
 from app.lib.db import DB
 
 app = Flask(__name__)
@@ -9,14 +10,13 @@ db = DB()
 db.connect(app.config['DB_HOST'], app.config['DB_USER'],
            app.config['DB_PASS'], app.config['DB_NAME'])
 
-game_page = Blueprint('game', __name__,
-        template_folder='templates')
-from app.modules.account.login import login_page
+from app.modules.account.account_handler import login_page
+from app.router import main_router
 app.register_blueprint(login_page)
-# app.register_blueprint(game_page)
+app.register_blueprint(main_router)
 
-"""
 @app.route("/")
-def index():
-    return render_template('index.html')
-"""
+def init():
+    if 'username' in session:
+        return redirect('/home')
+    return redirect('/login')
