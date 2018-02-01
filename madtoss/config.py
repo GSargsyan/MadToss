@@ -7,3 +7,4 @@ APP_HOST = 'localhost'
 
 PASS_ROUNDS = 20000
 SESSION_KEY = 'madsession'
+INITIAL_BALANCE = 0.000001

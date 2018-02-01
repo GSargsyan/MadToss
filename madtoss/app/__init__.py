@@ -17,6 +17,6 @@ app.register_blueprint(main_router)
 
 @app.route("/")
 def init():
-    if 'username' in session:
+    if 'pid' in session:
         return redirect('/home')
     return redirect('/login')

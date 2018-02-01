@@ -16,7 +16,8 @@
 		
 	</nav>
 	<div id="balance-container">
-			<p id="balance" class="blue-low-light">D 3.88579000 W</p>
+		{{ balance }}
+			<p id="balance" class="blue-low-light">D {{ "%.8f"| format(balance)}} W</p>
 			<img src="{{ url_for('static', filename='images/balance-underline.png') }}">
 	</div>
 	<div id="mid-content">
@@ -54,8 +55,8 @@
 				<span class="blue-low-light" id="high-grav">40</span>
 			</div>
 			<div id="coin-sides">
-				<img id="heads-button" src="{{ url_for('static', filename='images/board-H-button.png') }}"/>
-				<img id="tails-button" src="{{ url_for('static', filename='images/board-T-button.png') }}"/>
+				<input type="image" id="heads-button" src="{{ url_for('static', filename='images/board-H-button.png') }}">
+				<input type="image" id="tails-button" src="{{ url_for('static', filename='images/board-T-button.png') }}">
 			</div>
 		</div>
 		<div id="clock-container">

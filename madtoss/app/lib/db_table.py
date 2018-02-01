@@ -36,8 +36,6 @@ class DBTable:
 
 
     def insert(self, fields: List, values: Tuple):
-        # TODO: the code below doesn't work
-
         query = "INSERT INTO {} ({}) VALUES %s".format(
                 self.table, ", ".join(str(f) for f in fields))
         return db.execute(query, (values,))

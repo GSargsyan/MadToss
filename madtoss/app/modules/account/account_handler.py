@@ -31,8 +31,9 @@ class AccountHandler:
         if Players.exists(login):
             return 'Error: Username is busy'
         player = Player(username=login,
-                password=request.form['password'], balance=0.0001)
-        Players.register_player(player)
-        if player is not None:
-            session['username'] = player.username
+                password=request.form['password'])
+        try:
+            Players.register_player(player)
+        except ValidationError as ve:
+            return render_template('login.html', error=str(ve))
         return redirect('/')
