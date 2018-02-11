@@ -34,6 +34,6 @@ function changeChance(newValue) {
 }
 
 function addToChance(value) {
-	chance_elem = byId('chance');
-	chance_elem.innerHTML = parseInt(chance_elem.innerHTML) + value;
+	chanceElem = byId('chance');
+	chance_elem.innerHTML = parseInt(chanceElem.innerHTML) + value;
 }

@@ -1,9 +1,11 @@
 from flask import Blueprint, render_template, request, session, redirect
 from app import db
 from app.lib.players import Player, Players, ValidationError
+from app.lib.coin import Coins
 
 login_page = Blueprint('login_page', __name__,
-        template_folder='templates')
+                       template_folder='templates')
+
 
 class AccountHandler:
 
@@ -23,7 +25,10 @@ class AccountHandler:
         except ValidationError as ve:
             return render_template('login.html', error=str(ve))
 
-        return redirect('/')
+        # Create new coin and write its id in session
+        session['cid'] = Coins.insert_new()
+
+        return redirect('/home')
 
     @login_page.route('/register', methods=['POST'])
     def register():
@@ -31,7 +36,7 @@ class AccountHandler:
         if Players.exists(login):
             return 'Error: Username is busy'
         player = Player(username=login,
-                password=request.form['password'])
+                        password=request.form['password'])
         try:
             Players.register_player(player)
         except ValidationError as ve:

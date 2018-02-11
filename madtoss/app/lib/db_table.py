@@ -1,16 +1,13 @@
+import json
+from typing import Tuple, List, Dict
+
 from app import db
-from typing import Tuple, List
+
 
 class DBTable:
 
-    # table_name should be set by child class
-    table_name = None
-
-    def __init__(self, table_name):
-        self.table = table_name
-
-    def select(self, fields=['*'], joins=[], where='',
-               group_by='', order_by='', limit='', offset=''):
+    def _select(self, table, fields=['*'], joins=[], where='',
+                group_by='', order_by='', limit='', offset=''):
         tail = ''
         if group_by != '':
             tail += "GROUP BY {}".format(group_by)
@@ -20,11 +17,10 @@ class DBTable:
             tail += "LIMIT {}".format(limit)
         if offset != '':
             tail += "OFFSET {}".format(offset)
-        where = where if where != '' else 1
 
         query = "SELECT {} FROM {} {} WHERE {} {}"\
-                .format(",".join(fields), self.table, " ".join(joins),
-                        where, tail)
+                .format(",".join(fields), table, " ".join(joins),
+                        where if where else '1', tail)
 
         result = db.execute(query).fetchall()
         if result is None:
@@ -34,11 +30,17 @@ class DBTable:
                 return result[0]
         return result
 
+    def _insert(self, table, fields: List, values: Tuple, returning=None):
+        query = "INSERT INTO {} ({}) VALUES %s{}".format(
+                table, ", ".join(str(f) for f in fields),
+                " RETURNING " + returning if returning is not None
+            else "")
+        return db.execute(query, (values,)).fetchone()[0]
 
-    def insert(self, fields: List, values: Tuple):
-        query = "INSERT INTO {} ({}) VALUES %s".format(
-                self.table, ", ".join(str(f) for f in fields))
-        return db.execute(query, (values,))
+    def _update(self, table, changes: Dict, where=''):
+        query = "UPDATE {} SET {} WHERE {}".format(
+                table, ', '.join(["{}={}".format(k, v)
+                                  for k, v in changes.items()]),
+                where if where else '1')
 
-    def update(self, changes, where=[]):
-        pass
+        db.execute(query)

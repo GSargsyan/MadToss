@@ -16,23 +16,35 @@ CREATE TABLE players (
 	number_of_bets_won INT
 );
 
+CREATE TABLE coins (
+	id SERIAL PRIMARY KEY NOT NULL,
+	server_seed VARCHAR NOT NULL,
+	server_seed_hash VARCHAR NOT NULL,
+	client_seed VARCHAR NOT NULL,
+	nonce INT NOT NULL
+);
+
+CREATE TYPE COIN_SIDE AS ENUM ('H', 'T');
+
 CREATE TABLE bets 
 (
 	id SERIAL PRIMARY KEY NOT NULL,
 	player_id INT NOT NULL REFERENCES players(id),
-	bet_amount NUMERIC(15, 12),
+	coin_id INT REFERENCES coins(id) NOT NULL,
+	bet_amount NUMERIC(15, 12) NOT NULL,
 	date TIMESTAMP,
-	house_won BOOLEAN,
+	bet_on COIN_SIDE NOT NULL,
+	outcome COIN_SIDE NOT NULL,
 	chance NUMERIC(4, 2)
 );
 
 CREATE TABLE transaction_statuses (
-	id INT PRIMARY KEY,
+	id SERIAL PRIMARY KEY NOT NULL,
 	definition VARCHAR
 );
 
 CREATE TABLE player_statuses (
-	id INT PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	definition VARCHAR
 );
 

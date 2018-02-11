@@ -1,8 +1,11 @@
+import re
+
+from flask import session
+
 from app.lib.db_table import DBTable
+from app.lib.coin import Coin
 from app import app
 from passlib.hash import pbkdf2_sha256
-from flask import session
-import re
 
 
 class Player(DBTable):
@@ -33,10 +36,12 @@ class Player(DBTable):
         pass
 
     def sign_in(self):
-        """ Validates inputs and signes the player in session 
+        """ Validates inputs and signes the player in session
         if something goes wrong invalidates self to None
         """
         self.validate_username()
+        self = Players.get_player(username=self.username)
+
         if self is not None:
             session['pid'] = self.id
         else:
@@ -44,32 +49,32 @@ class Player(DBTable):
 
 
 class Players(DBTable):
+
     __initial_balance = app.config['INITIAL_BALANCE']
 
-    @classmethod
     def __init__(self):
-        self.table_name = 'players'
-        super().__init__(self, self.table_name)
+        pass
 
     @staticmethod
     def exists(username):
-        res = Players().select(where="username='{}'".
-                format(username), limit=1)
+        res = Players()._select('players', where="username='{}'".
+                                format(username), limit=1)
         return hasattr(res, 'id')
 
     @staticmethod
     def get_player(id=0, username=''):
         where = "id='{}'".format(id) if id != 0\
                 else "username='{}'".format(username)
-        result = Players().select(where=where, limit=1)
+        result = Players()._select('players', where=where, limit=1)
         if not result:
             return None
-        return Player(result.id, result.username, result.password, result.balance)
+        return Player(result.id, result.username,
+                      result.password, result.balance)
 
     @staticmethod
     def register_player(player):
         """ Registeres the player in DB if valid and signs in """
-        if type(player) != Player:
+        if not isinstance(player, Player):
             raise Exception('Invalid type supplied')
         if Players.exists(player.username):
             raise ValidationError('Username ' + player.username + ' exists')
@@ -80,7 +85,7 @@ class Players(DBTable):
             fields = fields + ('password')
             values = values + (player.password)
 
-        Players().insert(fields, values)
+        Players()._insert('players', fields, values)
         registered = Players.get_player(username=player.username)
         registered.sign_in()
 
