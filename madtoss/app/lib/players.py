@@ -2,13 +2,12 @@ import re
 
 from flask import session
 
-from app.lib.db_table import DBTable
 from app.lib.coin import Coin
-from app import app
+from app import app, db
 from passlib.hash import pbkdf2_sha256
 
 
-class Player(DBTable):
+class Player:
 
     def __init__(self, id=0, username='', password='', balance=0):
         self.username = username
@@ -48,7 +47,7 @@ class Player(DBTable):
             raise ValidationError('Username doesnt exist')
 
 
-class Players(DBTable):
+class Players:
 
     __initial_balance = app.config['INITIAL_BALANCE']
 
@@ -57,7 +56,7 @@ class Players(DBTable):
 
     @staticmethod
     def exists(username):
-        res = Players()._select('players', where="username='{}'".
+        res = db.select('players', where="username='{}'".
                                 format(username), limit=1)
         return hasattr(res, 'id')
 
@@ -65,7 +64,7 @@ class Players(DBTable):
     def get_player(id=0, username=''):
         where = "id='{}'".format(id) if id != 0\
                 else "username='{}'".format(username)
-        result = Players()._select('players', where=where, limit=1)
+        result = db.select('players', where=where, limit=1)
         if not result:
             return None
         return Player(result.id, result.username,
@@ -85,7 +84,7 @@ class Players(DBTable):
             fields = fields + ('password')
             values = values + (player.password)
 
-        Players()._insert('players', fields, values)
+        db.insert('players', fields, values)
         registered = Players.get_player(username=player.username)
         registered.sign_in()
 

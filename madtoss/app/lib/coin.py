@@ -1,11 +1,10 @@
 from hashlib import sha256
 
-from app import app
-from app.lib.db_table import DBTable
+from app import app, db
 from app.lib.helpers import random_alphanum, digits_from_str
 
 
-class Coins(DBTable):
+class Coins:
     __fields = ('server_seed', 'server_seed_hash', 'client_seed', 'nonce')
 
     def __init__(self):
@@ -19,20 +18,19 @@ class Coins(DBTable):
         cs = random_alphanum(length=app.config['CLIENT_SEED_LENGTH'])
         nonce = 0
         values = (ss, ss_hash, cs, nonce)
-        return Coins()._insert('coins', Coins.__fields, values, 'id')
+        return db.insert('coins', Coins.__fields, values, 'id')
 
     @staticmethod
     def get_coin(id):
         where = "id='{}'".format(id)
-        res = Coins()._select('coins', where=where, limit=1)
+        res = db.select('coins', where=where, limit=1)
         if not res:
             return None
         return Coin(res.id, res.server_seed,
                     res.server_seed_hash, res.client_seed, res.nonce)
 
 
-class Coin(DBTable):
-    @classmethod
+class Coin:
     def __init__(self, id=None, ss=None,
                  ss_hash=None, cs=None, nonce=None):
         """ Full field names are in Coins.__fields.
@@ -48,6 +46,7 @@ class Coin(DBTable):
     def toss(self):
         """ Uses self.seeds and self,nonce to generate random num from 0-100 """
         while True:
+            # TODO: something is wrong in this loop
             to_hash = (self.ss + self.cs + str(self.nonce)).encode()
             hashout = sha256(to_hash).hexdigest()
             out = digits_from_str(hashout, length=4)
@@ -58,4 +57,4 @@ class Coin(DBTable):
 
     def inc_nonce(self):
         """ Increment nonce by 1 in DB """
-        self._update('coins', {'nonce': 'nonce+1'}, 'id={}'.format(self.id))
+        db.update('coins', {'nonce': 'nonce+1'}, 'id={}'.format(self.id))

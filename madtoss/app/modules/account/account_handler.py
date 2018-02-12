@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request, session, redirect
-from app import db
 from app.lib.players import Player, Players, ValidationError
 from app.lib.coin import Coins
 
