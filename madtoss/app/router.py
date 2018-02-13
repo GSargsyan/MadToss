@@ -1,6 +1,9 @@
+from datetime import datetime
+
 from flask import Blueprint, render_template, session, redirect, request
 from app.lib.players import Players
-from app.lib.coin import Coins
+from app.lib.coins import Coins, CoinSides
+from app.lib.bets import Bet, Bets
 
 main_router = Blueprint('main_router', __name__,
                         template_folder='templates')
@@ -26,11 +29,19 @@ def init_game():
 
 @main_router.route('/toss', methods=['POST'])
 def toss():
+    # TODO: whatever comes from front-end maybe not what we expect
     if 'pid' not in session:
         return False
     player = Players.get_player(id=session['pid'])
 
     coin = Coins.get_coin(session['cid'])
-    outcome = coin.toss()
-    coin.inc_nonce()
-    return outcome
+    toss_res = coin.toss() # 0 - 100 random number
+    coin.inc_nonce()       # increment nonce of the coin by 1
+
+    params = request.json
+    bet = Bets.new(toss_res, params, player.id, coin.id)
+    Bets.insert(bet)
+    b_change = bet.balance_change()
+    player.commit_bet(bet, b_change)
+
+    return bet.outcome

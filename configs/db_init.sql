@@ -1,5 +1,8 @@
 CREATE USER madtoss WITH PASSWORD 'madpass';
 
+-- TODO: keep both last_played and last_logged_in dates
+-- TODO: keep also how much plays on average when logged
+-- So that to know if chats or plays
 CREATE TABLE players (
 	id SERIAL PRIMARY KEY NOT NULL,
 	username VARCHAR NOT NULL UNIQUE,
@@ -31,7 +34,7 @@ CREATE TABLE bets
 	id SERIAL PRIMARY KEY NOT NULL,
 	player_id INT NOT NULL REFERENCES players(id),
 	coin_id INT REFERENCES coins(id) NOT NULL,
-	bet_amount NUMERIC(15, 12) NOT NULL,
+	amount NUMERIC(15, 12) NOT NULL,
 	date TIMESTAMP,
 	bet_on COIN_SIDE NOT NULL,
 	outcome COIN_SIDE NOT NULL,

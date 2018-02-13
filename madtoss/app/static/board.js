@@ -7,11 +7,11 @@ function submitCoinToss() {
 	};
 	xhttp.open("POST", "/toss", true);
 	xhttp.setRequestHeader("Content-Type", "application/json");
+
 	
-	// var clientSeed = gen_client_seed(16);
-	// data_str = {clientSeed: clientSeed}
-	// xhttp.send(JSON.stringify(data_str));
-	xhttp.send();
+	// Amount = getAmount()
+	data_str = {amount: '0.00001', chance: getChance(), betOn: 'H'};
+	xhttp.send(JSON.stringify(data_str));
 }
 
 function changeBalance(newValue) {
@@ -21,5 +21,22 @@ function changeBalance(newValue) {
 
 	diff = newValue - oldValue;
 	alert(diff);
+}
+
+function getChance() {
+	return byId('chance').innerHTML;
+}
+
+function getAmount() {
+	return byId('amount').innerHTML;
+}
+
+function changeChance(newValue) {
+	byId('chance').innerHTML = newValue;
+}
+
+function addToChance(value) {
+	chanceElem = byId('chance');
+	chance_elem.innerHTML = parseInt(chanceElem.innerHTML) + value;
 }
 // changeBalance(0.00002);

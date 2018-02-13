@@ -2,49 +2,9 @@ import re
 
 from flask import session
 
-from app.lib.coin import Coin
+from app.lib.coins import Coin
 from app import app, db
 from passlib.hash import pbkdf2_sha256
-
-
-class Player:
-
-    def __init__(self, id=0, username='', password='', balance=0):
-        self.username = username
-        self.id = id
-        self.__password = password
-        self.balance = balance
-
-    def __password_matches(self, pwd_to_check):
-        # rounds = app.config['PASS_ROUNDS']
-        # hash = pbkdf2_sha256.encrypt("password", rounds=rounds)
-        return pbkdf2_sha256.verify(pwd_to_check, self.__password)
-
-    def validate_username(self):
-        if not hasattr(self, 'username') or\
-                self.username == '':
-            raise ValidationError('No username')
-        elif len(self.username) > 16:
-            raise ValidationError('Login cannot be more than 16 chars')
-        elif len(self.username) < 6:
-            raise ValidationError('Login cannot be less than 6 chars')
-        elif not re.match("^[A-Za-z0-9_]*$", self.username):
-            raise ValidationError('Invalid characters')
-
-    def validate_password(self):
-        pass
-
-    def sign_in(self):
-        """ Validates inputs and signes the player in session
-        if something goes wrong invalidates self to None
-        """
-        self.validate_username()
-        self = Players.get_player(username=self.username)
-
-        if self is not None:
-            session['pid'] = self.id
-        else:
-            raise ValidationError('Username doesnt exist')
 
 
 class Players:
@@ -87,6 +47,59 @@ class Players:
         db.insert('players', fields, values)
         registered = Players.get_player(username=player.username)
         registered.sign_in()
+
+
+class Player:
+
+    def __init__(self, id=0, username='', password='', balance=0):
+        self.username = username
+        self.id = id
+        self.__password = password
+        self.balance = balance
+
+    def __password_matches(self, pwd_to_check):
+        # rounds = app.config['PASS_ROUNDS']
+        # hash = pbkdf2_sha256.encrypt("password", rounds=rounds)
+        return pbkdf2_sha256.verify(pwd_to_check, self.__password)
+
+    def validate_username(self):
+        if not hasattr(self, 'username') or\
+                self.username == '':
+            raise ValidationError('No username')
+        elif len(self.username) > 16:
+            raise ValidationError('Login cannot be more than 16 chars')
+        elif len(self.username) < 6:
+            raise ValidationError('Login cannot be less than 6 chars')
+        elif not re.match("^[A-Za-z0-9_]*$", self.username):
+            raise ValidationError('Invalid characters')
+
+    def validate_password(self):
+        pass
+
+    def sign_in(self):
+        """ Validates inputs and signes the player in session
+        if something goes wrong invalidates self to None
+        """
+        self.validate_username()
+        self = Players.get_player(username=self.username)
+
+        if self is not None:
+            session['pid'] = self.id
+        else:
+            raise ValidationError("Username doesnt exist")
+
+    def commit_bet(self, bet, balance_change):
+        if bet.player_id != self.id:
+            raise Exception("Player id doesnt match with bets player id")
+        won = bet.outcome == bet.bet_on
+        changes = {}
+        changes['balance'] = "balance + ({})".format(str(balance_change))
+        changes['number_of_bets'] = "number_of_bets + 1"
+        changes['wagered'] = "wagered + {}".format(bet.amount)
+        if won:
+            changes['number_of_bets_won'] = "number_of_bets_won + 1"
+        where = "id = {}".format(self.id)
+        db.update('players', changes, where)
 
 
 class ValidationError(Exception):

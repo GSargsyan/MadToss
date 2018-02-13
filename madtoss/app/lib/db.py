@@ -43,11 +43,10 @@ class DB:
                 return result[0]
         return result
 
-    def insert(self, table, fields: List, values: Tuple, returning=None):
+    def insert(self, table, fields: Tuple, values: Tuple, returning=None):
         query = "INSERT INTO {} ({}) VALUES %s{}".format(
-                table, ", ".join(str(f) for f in fields),
-                " RETURNING " + returning if returning is not None
-            else "")
+                table, ", ".join(fields),
+                " RETURNING " + returning if returning is not None else "")
         return self.execute(query, (values,)).fetchone()[0]
 
     def update(self, table, changes: Dict, where=''):

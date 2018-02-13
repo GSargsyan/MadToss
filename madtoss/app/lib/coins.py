@@ -1,4 +1,5 @@
 from hashlib import sha256
+from enum import Enum
 
 from app import app, db
 from app.lib.helpers import random_alphanum, digits_from_str
@@ -45,16 +46,22 @@ class Coin:
 
     def toss(self):
         """ Uses self.seeds and self,nonce to generate random num from 0-100 """
+        to_hash = (self.ss + self.cs + str(self.nonce)).encode()
         while True:
-            # TODO: something is wrong in this loop
-            to_hash = (self.ss + self.cs + str(self.nonce)).encode()
             hashout = sha256(to_hash).hexdigest()
             out = digits_from_str(hashout, length=4)
             if out:
                 # Cast from  ['2', '3', '4', '5'] to 23.45
                 return ''.join(out[:2]) + '.' + ''.join(out[2:])
+            else:
+                to_hash = hashout
         return None
 
     def inc_nonce(self):
         """ Increment nonce by 1 in DB """
         db.update('coins', {'nonce': 'nonce+1'}, 'id={}'.format(self.id))
+
+
+class CoinSides(Enum):
+    HEADS = 'H'
+    TAILS = 'T'

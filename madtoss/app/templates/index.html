@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-	<script type="text/javascript" src="{{ url_for('static', filename='game_related.js') }}"></script> 
+	<script type="text/javascript" src="{{ url_for('static', filename='utils.js') }}"></script> 
 </head>
 <body>
 	<nav>
@@ -34,11 +34,11 @@
 		<div id="board-container">
 			<div id="bet-amount-container">
 				<p class="blue-low-light" style="font-size: 14px;">Bet Amount</p>
-				<p class="blue-low-light" style="font-size: 14px;">0.00080000</p>
+				<p id="amount" class="blue-low-light" style="font-size: 14px;">0.00080000</p>
 			</div>
 			<div id="outcome-container">
 				<p class="blue-low-light" style="font-size: 14px;">Outcome</p>
-				<p class="blue-low-light" style="font-size: 14px;">0.00080000</p>
+				<p id="outcome" class="blue-low-light" style="font-size: 14px;">0.00080000</p>
 			</div>
 			<div id="chance-container">
 				<input type="image" src="{{ url_for('static', filename='images/higher-button.png') }}" onclick="addToChance(1)">
@@ -62,10 +62,12 @@
 				<input type="image" id="tails-button" src="{{ url_for('static', filename='images/board-T-button.png') }}">
 			</div>
 		</div>
+		<script type="text/javascript" src="{{ url_for('static', filename='board.js') }}"></script> 
 		<div id="clock-container">
 			<img id="clock-minute-hand" class="clock-hand" src="{{ url_for('static', filename='images/clock-minute-hand.png') }}">
 			<img id="clock-hour-hand" class="clock-hand" src="{{ url_for('static', filename='images/clock-hour-hand.png') }}">
 		</div>
+		<script type="text/javascript" src="{{ url_for('static', filename='clock.js') }}"></script> 
 	</div>
 	<!--
 	<div id="outcome-display">
@@ -91,6 +93,5 @@
 		</div>
 	</div>
 
-	<script type="text/javascript" src="{{ url_for('static', filename='utils.js') }}"></script> 
 </body>
 </html>

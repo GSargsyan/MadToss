@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, session, redirect
 from app.lib.players import Player, Players, ValidationError
-from app.lib.coin import Coins
+from app.lib.coins import Coins
 
 login_page = Blueprint('login_page', __name__,
                        template_folder='templates')
