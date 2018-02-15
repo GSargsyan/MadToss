@@ -17,9 +17,12 @@
 		
 	</nav>
 	<div id="balance-container">
-		{{ balance }}
-			<p id="balance" class="blue-low-light">D {{ "%.8f"| format(balance)}} W</p>
-			<img src="{{ url_for('static', filename='images/balance-underline.png') }}">
+		<p>
+			<span id="deposit-button" class="blue-low-light">D </span>
+			<span id="balance" class="blue-low-light">{{ "%.8f"| format(balance) }}</span>
+			<span id="withdraw-button" class="blue-low-light"> W</span>
+		</p>
+		<img src="{{ url_for('static', filename='images/balance-underline.png') }}">
 	</div>
 	<div id="mid-content">
 		<div id="chat-container">
@@ -34,11 +37,11 @@
 		<div id="board-container">
 			<div id="bet-amount-container">
 				<p class="blue-low-light" style="font-size: 14px;">Bet Amount</p>
-				<p id="amount" class="blue-low-light" style="font-size: 14px;">0.00080000</p>
+				<p id="amount" class="blue-low-light" style="font-size: 14px;">0.00000001</p>
 			</div>
 			<div id="outcome-container">
 				<p class="blue-low-light" style="font-size: 14px;">Outcome</p>
-				<p id="outcome" class="blue-low-light" style="font-size: 14px;">0.00080000</p>
+				<p id="outcome" class="blue-low-light" style="font-size: 14px;">0.00000001</p>
 			</div>
 			<div id="chance-container">
 				<input type="image" src="{{ url_for('static', filename='images/higher-button.png') }}" onclick="addToChance(1)">
@@ -56,10 +59,12 @@
 				<span class="blue-low-light" id="high-grav">40</span>
 			</div>
 			<div id="coin-sides">
-				<input type="image" id="heads-button" 
+				<input type="image" id="heads-button"
 					src="{{ url_for('static', filename='images/board-H-button.png') }}"
-					onclick="submitCoinToss()">
-				<input type="image" id="tails-button" src="{{ url_for('static', filename='images/board-T-button.png') }}">
+					onclick="submitCoinToss('H')">
+				<input type="image" id="tails-button"
+					src="{{ url_for('static', filename='images/board-T-button.png') }}"
+					onclick="submitCoinToss('T')">
 			</div>
 		</div>
 		<script type="text/javascript" src="{{ url_for('static', filename='board.js') }}"></script> 

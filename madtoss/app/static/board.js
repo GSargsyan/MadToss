@@ -1,17 +1,30 @@
-function submitCoinToss() {
+MAX_CHANCE = 99;
+MIN_CHANCE = 1;
+
+function submitCoinToss(coinSide) {
+	disableTossButtons();
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			alert(this.responseText);
+			enableTossButtons();
+			response = JSON.parse(this.responseText);
+			updateStats(response);
 		}
 	};
 	xhttp.open("POST", "/toss", true);
 	xhttp.setRequestHeader("Content-Type", "application/json");
-
-	
-	// Amount = getAmount()
-	data_str = {amount: '0.00001', chance: getChance(), betOn: 'H'};
+	data_str = {amount: getAmount(), chance: getChance(), betOn: coinSide};
 	xhttp.send(JSON.stringify(data_str));
+}
+
+function disableTossButtons() {
+	byId('heads-button').disabled = true;
+	byId('tails-button').disabled = true;
+}
+
+function enableTossButtons() {
+	byId('heads-button').disabled = false;
+	byId('tails-button').disabled = false;
 }
 
 function changeBalance(newValue) {
@@ -20,7 +33,8 @@ function changeBalance(newValue) {
 	overallTime = 0.5; // seconds
 
 	diff = newValue - oldValue;
-	alert(diff);
+	steps = 5;
+	stepSize = diff / steps;
 }
 
 function getChance() {
@@ -37,6 +51,12 @@ function changeChance(newValue) {
 
 function addToChance(value) {
 	chanceElem = byId('chance');
-	chance_elem.innerHTML = parseInt(chanceElem.innerHTML) + value;
+	newValue = parseInt(chanceElem.innerHTML) + value;
+	if (MIN_CHANCE < newValue && newValue < MAX_CHANCE)
+		chanceElem.innerHTML = parseInt(chanceElem.innerHTML) + value;
+}
+
+function updateStats(params) {
+	byId('balance').innerHTML = Number(params.newBalance).toFixed(8);
 }
 // changeBalance(0.00002);

@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 
 from flask import Blueprint, render_template, session, redirect, request
@@ -42,6 +43,12 @@ def toss():
     bet = Bets.new(toss_res, params, player.id, coin.id)
     Bets.insert(bet)
     b_change = bet.balance_change()
+    print(b_change)
     player.commit_bet(bet, b_change)
 
-    return bet.outcome
+    # Get new, updated player
+    player = Players.get_player(id=player.id)
+
+    response = json.dumps({'outcome': bet.outcome,
+        'newBalance': str(player.balance)})
+    return response

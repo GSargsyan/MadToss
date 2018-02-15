@@ -1,25 +1,29 @@
 from datetime import datetime
-from decimal import Decimal
+from decimal import Decimal, ROUND_DOWN
 from app import db
 from app.lib.coins import CoinSides
 
 
 class Bet:
-    def __init__(self, id=None, player_id=None, coin_id=None, amount=None,
-                 date=None, outcome=None, chance=None, bet_on=None):
+    def __init__(self, id=0, player_id=0, coin_id=0, amount='',
+                 date=None, outcome=None, chance='', bet_on=None):
         self.id = id
         self.player_id = player_id
         self.coin_id = coin_id
-        self.amount = amount
+        self.amount = Decimal(amount)
         self.date = date
         self.outcome = outcome
-        self.chance = chance
+        self.chance = Decimal(chance)
         self.bet_on = bet_on
 
     def balance_change(self):
-        """ Calculates and returns the change of balance """
-        return self.amount * (Decimal(100) / self.chance) - Decimal(0.0088) * \
-            self.amount if self.outcome == self.bet_on else self.amount * -1
+        """ Calculates and returns the change of balance,
+        rouding to 12 digits
+        """
+        return (((self.amount * Decimal(100) / self.chance) - (Decimal(0.0088) * \
+            self.amount) - self.amount)  if self.outcome == self.bet_on\
+            else self.amount * Decimal(-1)).quantize(Decimal('1.000000000000'),
+                    rounding=ROUND_DOWN)
 
 
 class Bets:
@@ -66,8 +70,6 @@ class Bets:
                 outcome = CoinSides.TAILS.value
             else:  # == 'T'
                 outcome = CoinSides.HEADS.value
-        amount = Decimal(params['amount'])
-        chance = Decimal(params['chance'])
-        return Bet(player_id=pid, coin_id=cid, amount=amount,
-                   date=datetime.now(), outcome=outcome, chance=chance,
+        return Bet(player_id=pid, coin_id=cid, amount=params['amount'],
+                   date=datetime.now(), outcome=outcome, chance=params['chance'],
                    bet_on=params['betOn'])
