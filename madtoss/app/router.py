@@ -2,9 +2,11 @@ import json
 from datetime import datetime
 
 from flask import Blueprint, render_template, session, redirect, request
+
 from app.lib.players import Players
 from app.lib.coins import Coins, CoinSides
 from app.lib.bets import Bet, Bets
+from app.modules.chat.main import chat
 
 main_router = Blueprint('main_router', __name__,
                         template_folder='templates')
@@ -43,7 +45,6 @@ def toss():
     bet = Bets.new(toss_res, params, player.id, coin.id)
     Bets.insert(bet)
     b_change = bet.balance_change()
-    print(b_change)
     player.commit_bet(bet, b_change)
 
     # Get new, updated player

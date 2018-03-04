@@ -152,6 +152,14 @@ nav ul li::before {
     position: absolute;
 }
 
+#chat-input {
+	outline: none;
+	background-color: none;
+	background-color: transparent;
+	border: none;
+	color: #20CDCE;
+}
+
 #clock-container {
 	position: absolute;
 	background-image: url("images/clock-frame.png");
@@ -248,8 +256,16 @@ nav ul li::before {
 	float: left;
 }
 
+#heads-button:focus {
+	outline: none;
+}
+
 #tails-button {
 	float: right;
+}
+
+#tails-button:focus {
+	outline: none;
 }
 
 #low-grav {

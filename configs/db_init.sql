@@ -1,4 +1,6 @@
 CREATE USER madtoss WITH PASSWORD 'madpass';
+CREATE DATABASE madtoss;
+GRANT ALL PRIVILEGES ON DATABASE madtoss TO madtoss;
 
 -- TODO: keep both last_played and last_logged_in dates
 -- TODO: keep also how much plays on average when logged

@@ -9,6 +9,8 @@ dnf install uwsgi-plugin-python3
 dnf install postgresql-server
 dnf install postgresql-contrib
 dnf install pgadmin3
+dnf install openssl-devel
+
 
 python -m pip install passlib
 

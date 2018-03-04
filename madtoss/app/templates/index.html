@@ -25,15 +25,30 @@
 		<img src="{{ url_for('static', filename='images/balance-underline.png') }}">
 	</div>
 	<div id="mid-content">
-		<div id="chat-container">
-			<img class="chat-horizontal-bound" id="chat-outer-upper-bound" src="{{ url_for('static', filename='images/chat-outer-upper-bound.png') }}">
-			<p id="chat-title" class="blue-low-light">CHAT</p>
-			<img class="chat-horizontal-bound" id="chat-inner-upper-bound" src="{{ url_for('static', filename='images/chat-inner-upper-bound.png') }}">
-			<img id="chat-left-bound" src="{{ url_for('static', filename='images/chat-left-bound.png') }}">
-			<img id="chat-right-bound" src="{{ url_for('static', filename='images/chat-right-bound.png') }}">
-			<img class="chat-horizontal-bound" id="chat-inner-lower-bound" src="{{ url_for('static', filename='images/chat-inner-lower-bound.png') }}">
-			<img class="chat-horizontal-bound" id="chat-outer-lower-bound" src="{{ url_for('static', filename='images/chat-outer-lower-bound.png') }}">
-		</div>
+		
+
+	<div id="chat-container">
+		<img class="chat-horizontal-bound" id="chat-outer-upper-bound"
+			src="{{ url_for('static', filename='images/chat-outer-upper-bound.png') }}">
+		<p id="chat-title" class="blue-low-light">CHAT</p>
+		<img class="chat-horizontal-bound" id="chat-inner-upper-bound"
+			src="{{ url_for('static', filename='images/chat-inner-upper-bound.png') }}">
+		<img id="chat-left-bound"
+			src="{{ url_for('static', filename='images/chat-left-bound.png') }}">
+		<img id="chat-right-bound"
+			src="{{ url_for('static', filename='images/chat-right-bound.png') }}">
+
+
+		<img class="chat-horizontal-bound" id="chat-inner-lower-bound"
+			src="{{ url_for('static', filename='images/chat-inner-lower-bound.png') }}">
+		<input id="chat-input" type="text" onkeypress="checkSubmit(event)">
+		<img class="chat-horizontal-bound" id="chat-outer-lower-bound"
+			src="{{ url_for('static', filename='images/chat-outer-lower-bound.png') }}">
+	</div>
+
+
+		<script type="text/javascript" src="{{ url_for('static', filename='chat.js') }}"></script>
+
 		<div id="board-container">
 			<div id="bet-amount-container">
 				<p class="blue-low-light" style="font-size: 14px;">Bet Amount</p>
