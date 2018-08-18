@@ -1,11 +1,11 @@
 var ws = new WebSocket("ws://localhost/chat");
 
 ws.onopen = function () {
-	alert('connected!!!');
+	console.log('connected!!!');
 }
 
 ws.onmessage = function (event) {
-	  alert(event.data);
+	  console.log(event.data);
 }
 
 function checkSubmit(event) {

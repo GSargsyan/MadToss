@@ -158,6 +158,10 @@ nav ul li::before {
 	background-color: transparent;
 	border: none;
 	color: #20CDCE;
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+	width: 85%;
 }
 
 #clock-container {
